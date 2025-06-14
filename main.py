@@ -111,7 +111,6 @@ class SimpleCNN(nn.Module):
 def train(model, train_loader, val_loader, criterion,
           optimizer, device, num_epochs=10, writer=None,
           excel_path="training_metrics.xlsx"):
-    from version_control import version_file_with_metadata as version_file
     
     import torch
     import pandas as pd
@@ -195,7 +194,6 @@ def train(model, train_loader, val_loader, criterion,
     # Export metrics to Excel
     df_history = pd.DataFrame(history)
     df_history.to_excel(excel_path, index=False)
-    version_file(excel_path)
 
     print(f"\n✅ Training complete. Metrics saved to: {excel_path}")
     return history
@@ -204,7 +202,6 @@ def generate_metrices(history):
     """
     Generate a dictionary of metrics from the training history.
     """
-    from version_control import version_file_with_metadata as version_file
     from sklearn.metrics import classification_report, confusion_matrix
     import pandas as pd
     import numpy as np
@@ -216,17 +213,14 @@ def generate_metrices(history):
     report = classification_report(labels, preds, output_dict=True)
     report_df = pd.DataFrame(report).transpose()
     report_df.to_csv("results/classification_report.csv", index=True)
-    version_file("results/classification_report.csv")
     # Confusion matrix
     cm = confusion_matrix(labels, preds)
     cm_df = pd.DataFrame(cm)
     cm_df.to_csv("results/confusion_matrix.csv", index=True)
-    version_file("results/confusion_matrix.csv")
 
     return report_df, cm_df
 
 def plot_training(history):
-    from version_control import version_file_with_metadata as version_file
 
     epochs = range(1, len(history['train_loss']) + 1)
 
@@ -265,7 +259,6 @@ if __name__ == "__main__":
     import torch.nn.functional as F
     from torch.utils.tensorboard import SummaryWriter
     from torchvision import datasets, transforms
-    from version_control import version_file_with_metadata as version_file
 
     batch_size = 64
     num_workers = 2
@@ -323,7 +316,6 @@ if __name__ == "__main__":
         'optimizer_state_dict': optimizer.state_dict(),
     }
     torch.save(checkpoint, model_path)
-    version_file(model_path)
 
     # %% 
     plot_training(history)
