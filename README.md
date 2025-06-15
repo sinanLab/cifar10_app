@@ -13,7 +13,8 @@
 ``conda env update -f environment.yml --prune``
 
 # run the main.py file
-make sure you are in the current directory where the main file is located, then run the following command in anaconda/ terminal. 
+Make sure you are in the current directory where the main file is located, and then run the following command in the Anaconda terminal. 
+
 ``python main.py``
 
 # CIFAR10_APP
