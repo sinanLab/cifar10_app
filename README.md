@@ -1,4 +1,22 @@
-## CIFAR10_APP
+# Usage
+## Install the environment
+1. Create the environment from the environment.yml file
+   
+``conda env create -f environment.yml``
+
+3. Activate the newly created environment
+   
+``conda activate deep_learning_env_pytorch  # Replace with your environment name if different``
+
+5. (Optional) If you made changes and want to update the environment
+   
+``conda env update -f environment.yml --prune``
+
+# run the main.py file
+make sure you are in the current directory where the main file is located, then run the following command in anaconda/ terminal. 
+``python main.py``
+
+# CIFAR10_APP
 This code contains several files, such as main file, some results and the app that was deployed based on tkinter python
 
 ## Table of results
